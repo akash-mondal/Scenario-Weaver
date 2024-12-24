@@ -1,0 +1,272 @@
+
+
+:root {
+  --primary-color: #FFFFFF; /* White */
+  --secondary-color: #FF0000; /* Red */
+  --accent-color: #CC0000; /* Darker Red */
+  --text-color: #222222; /* Dark Gray for text */
+  --background-color: var(--primary-color);
+  --button-background-color: var(--secondary-color);
+  --button-text-color: var(--primary-color);
+  --button-hover-background-color: var(--accent-color);
+  --border-color: var(--secondary-color);
+
+  /* Other variables from your original App.scss (if needed) */
+  --gray-200: #b4b8bb;
+  --gray-300: #80868b;
+  --gray-500: #5f6368;
+  --gray-600: #444444;
+  --gray-700: #202020;
+  --gray-800: #171717;
+  --gray-900: #111111;
+  --gray-1000: #0a0a0a;
+
+  --accent-blue: rgb(161, 228, 242);
+  --accent-blue-active-bg: #001233;
+  --accent-blue-active: #98beff;
+  --accent-blue-headers: #448dff;
+  --accent-green: rgb(168, 218, 181);
+
+  --midnight-blue: rgb(0, 18, 51);
+  --blue-30: #99beff;
+
+  --Neutral-00: #000;
+  --Neutral-5: #181a1b;
+  --Neutral-10: #1c1f21;
+  --Neutral-15: #232729;
+  --Neutral-20: #2a2f31;
+  --Neutral-30: #404547;
+  --Neutral-50: #707577;
+  --Neutral-60: #888d8f;
+  --Neutral-80: #c3c6c7;
+  --Neutral-90: #e1e2e3;
+
+  --Green-500: #0d9c53;
+  --Green-700: #025022;
+
+  --Blue-500: #1f94ff;
+  --Blue-800: #0f3557;
+
+  --font-family: "Space Mono", monospace;
+}
+
+body {
+  font-family: var(--font-family);
+  background: var(--background-color);
+  color: var(--text-color); /* Set default text color */
+}
+
+.material-symbols-outlined {
+  &.filled {
+    font-variation-settings:
+      "FILL" 1,
+      "wght" 400,
+      "GRAD" 0,
+      "opsz" 24;
+  }
+}
+
+/* Font styles (keep these) */
+.space-mono-regular {
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.space-mono-bold {
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.space-mono-regular-italic {
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.space-mono-bold-italic {
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.hidden {
+  display: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.h-screen-full {
+  height: 100vh;
+}
+
+.w-screen-full {
+  width: 100vw;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+/* Streaming Console Styles */
+.streaming-console {
+  background: var(--background-color);
+  color: var(--text-color);
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+
+  a,
+  a:visited,
+  a:active {
+    color: var(--secondary-color); /* Make links red */
+  }
+
+  .disabled {
+    pointer-events: none;
+
+    >* {
+      pointer-events: none;
+    }
+  }
+
+  main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically */
+    flex-grow: 1;
+    gap: 1rem;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  /* Removed .main-app-area class styles */
+
+  .function-call {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 50%;
+    overflow-y: auto;
+  }
+}
+
+/* Video Player Styles */
+.stream {
+  flex-grow: 1;
+  max-width: 90%;
+  border: 2px solid var(--secondary-color);
+  border-radius: 32px;
+  max-height: fit-content;
+  &.hidden{
+    border: none;
+  }
+}
+
+.timer {
+  text-align: center;
+  margin-top: 20px;
+
+  .timer-display {
+    font-size: 2rem;
+    color: var(--secondary-color);
+  }
+}
+.feedback-button {
+  background-color: var(--accent-color);
+  color: var(--background-color);
+  border: none;
+  padding: 12px 25px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: center;
+  margin-top: 10px;
+
+  &:hover {
+    filter: brightness(0.85);
+  }
+}
+.main-app-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Distribute space between elements */
+  flex-grow: 1;
+  gap: 1rem;
+  max-width: 10%;
+  overflow: hidden;
+
+  .footer {
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    align-items: center; /* Center content horizontally */
+    width: 100%;
+    padding: 20px;
+    color: var(--text-color);
+
+    p {
+      margin-bottom: 1px; /* Add some space between text and icons */
+      font-size: 2rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 20px; /* Space between the icons */
+
+      a {
+        color: var(--secondary-color);
+        font-size: 4rem; /* Adjust icon size as needed */
+        transition: color 0.2s ease, transform 0.2s ease; /* Smooth transition for hover effect */
+
+        &:hover {
+          color: var(--accent-color);
+          transform: translateY(-3px); /* Add a slight upward movement on hover */
+        }
+      }
+    }
+  }
+}
+.streaming-console {
+  // ... (other styles)
+
+  main {
+    // ... (other styles)
+
+    .app-title {
+      font-family: "Google Sans", sans-serif; /* Or any unique font */
+      font-size: 3rem;
+      color: var(--secondary-color);
+      text-align: center;
+      margin-bottom: 2rem; /* Add some space below the title */
+      text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+      animation: color-shift 5s linear infinite; /* Add color changing animation */
+    }
+
+    @keyframes color-shift {
+      0% {
+        color: var(--secondary-color);
+      }
+      50% {
+        color: var(--accent-color);
+      }
+      100% {
+        color: var(--secondary-color);
+      }
+    }
+  }
+}

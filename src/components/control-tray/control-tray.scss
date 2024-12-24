@@ -1,0 +1,203 @@
+.control-tray {
+  position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  // Other styles remain unchanged
+}
+.control-tray-scaled {
+  transform: scale(3.5); /* Increase size by 3.5x */
+  transform-origin: center; /* Scale from the center */
+  margin-top: 200px;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background-color); /* White background */
+  color: var(--secondary-color); /* Red icons */
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  text-transform: lowercase;
+  cursor: pointer;
+  animation: opacity-pulse 3s ease-in infinite;
+  transition: all 0.2s ease-in-out;
+  width: 48px;
+  height: 48px;
+  border-radius: 18px;
+  border: 1px solid var(--border-color); /* Red border */
+  user-select: none;
+
+  &:focus {
+    border: 2px solid var(--background-color);
+    outline: 2px solid var(--secondary-color);
+  }
+
+  &.outlined {
+    background: var(--background-color);
+    border: 1px solid var(--secondary-color);
+  }
+
+  .no-action {
+    pointer-events: none;
+  }
+
+  &:hover {
+    background: var(--accent-color); /* Darker red on hover */
+    border: 1px solid var(--accent-color);
+    color: var(--primary-color); /* White text on hover */
+  }
+
+  &.connected {
+    background: var(--secondary-color);
+    color: var(--primary-color);
+
+    &:hover {
+      background: var(--accent-color);
+      border: 1px solid var(--accent-color);
+    }
+  }
+}
+
+@property --volume {
+  syntax: "length";
+  inherit: false;
+  initial-value: 0px;
+}
+
+.disabled .mic-button,
+.mic-button.disabled {
+  &:before {
+    background: rgba(0, 0, 0, 0); /* Transparent when disabled */
+  }
+}
+
+.mic-button {
+  position: relative;
+  background-color: var(--secondary-color);
+  z-index: 1;
+  color: var(--primary-color); /* White text */
+  transition: all 0.2s ease-in;
+
+  &:focus {
+    border: 2px solid var(--background-color);
+    outline: 2px solid var(--secondary-color);
+  }
+
+  &:hover {
+    background-color: var(--accent-color); /* Darker red on hover */
+  }
+
+  &:before {
+    position: absolute;
+    z-index: -1;
+    top: calc(var(--volume) * -1);
+    left: calc(var(--volume) * -1);
+    display: block;
+    content: "";
+    opacity: 0.35;
+    background-color: var(--secondary-color);
+    width: calc(100% + var(--volume) * 2);
+    height: calc(100% + var(--volume) * 2);
+    border-radius: 24px;
+    transition: all 0.02s ease-in-out;
+  }
+}
+
+.connect-toggle {
+  &:focus {
+    border: 2px solid var(--background-color);
+    outline: 2px solid var(--secondary-color);
+  }
+
+  &:not(.connected) {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+  }
+}
+
+.control-tray {
+  /*position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);*/
+  display: inline-flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+  padding-bottom: 18px;
+
+  .disabled .action-button,
+  .action-button.disabled {
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color); /* Disabled text color */
+
+    &:hover {
+      background-color: var(--background-color); /* No hover effect when disabled */
+      color: var(--text-color);
+    }
+  }
+
+  .connection-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+
+    .connection-button-container {
+      border-radius: 27px;
+      border: 1px solid var(--border-color);
+      background: var(--background-color);
+      padding: 10px;
+    }
+
+    .text-indicator {
+      font-size: 11px;
+      color: var(--secondary-color);
+      user-select: none;
+    }
+
+    &:not(.connected) {
+      .text-indicator {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.actions-nav {
+  background: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 27px;
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  overflow: clip;
+  padding: 10px;
+
+  transition: all 0.6s ease-in;
+
+  &>* {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@keyframes opacity-pulse {
+  0% {
+    opacity: 0.9;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.9;
+  }
+}
