@@ -35,7 +35,7 @@ export default function SidePanel({
     const masterPromptStart =
       "You are acting as a emergency dispatch caller, you have called 911 and your emergency is ";
     const masterPromptEnd =
-      ", talk in a human tone, stutter, pause randomly, mispronounce, be in a hurry, use filler words, and sometimes randomly interrupt and also do accents Now we will start the simulation Say I am Ready Please go ahead and Say to me 'To Start the Simulation say 911 whats your emergency'";
+      ", talk in a natural human tone and produce truly random scenarios with a lot variation and uniqueness to challenge according to challenge level, with imperfections in the delivery of the speech Now we will start the simulation Say I am Ready Please go ahead and Say to me 'To Start the Simulation say 911 whats your emergency'";
 
     let scenarioText = "";
     switch (selectedScenario) {
@@ -89,7 +89,7 @@ export default function SidePanel({
     const handleTimerEnd = () => {
       // Send feedback message automatically when the timer ends
       const feedbackMessage =
-        "Ok now lets stop this simuation , Give me detailed and indepth feedback of the disptach reciever performance according to protocols and also give me suggestions on where i can improve my emergency response , talk for atleast 30 seconds , after finishing your review say 'I am here for further questions on your performance feel free to ask'";
+        "Ok now lets stop this simuation , Give me detailed and indepth feedback of the disptach reciever performance (only his response contents) according to protocols and also give me suggestions on where i can improve my emergency response , this will be used for training , talk for atleast 30 seconds , after finishing your review say 'I am here for further questions on your performance feel free to ask'";
       client.send([
         {
           text: feedbackMessage,
