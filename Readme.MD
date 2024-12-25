@@ -2,7 +2,9 @@
 
 
 
-
+<div style="text-align: center">
+  <img src="https://raw.githubusercontent.com/shresthasingh1501/Scenario-Weaver/refs/heads/main/public/6aeeb198-39f9-4eb4-b3cf-43731219f7cc.jpeg" alt="Screenshot of Scenario Weaver" width="600"/>
+</div>
 
 
 
