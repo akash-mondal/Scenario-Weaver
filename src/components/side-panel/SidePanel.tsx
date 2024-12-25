@@ -89,7 +89,7 @@ export default function SidePanel({
     const handleTimerEnd = () => {
       // Send feedback message automatically when the timer ends
       const feedbackMessage =
-        "Ok now lets stop this simuation , Give me detailed and indepth feedback on my performance according to protocols and also give me suggestions on where i can improve , talk for atleast 30 seconds , now go";
+        "Ok now lets stop this simuation , Give me detailed and indepth feedback of the disptach reciever performance according to protocols and also give me suggestions on where i can improve my emergency response , talk for atleast 30 seconds , after finishing your review say 'I am here for further questions on your performance feel free to ask'";
       client.send([
         {
           text: feedbackMessage,
