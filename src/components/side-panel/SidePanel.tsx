@@ -1,5 +1,5 @@
 import cn from "classnames";
-import { useState, ChangeEvent, useRef } from "react";
+import { useState, ChangeEvent, useRef, useEffect } from "react";
 import { RiSidebarFoldLine, RiSidebarUnfoldLine } from "react-icons/ri";
 import { useLiveAPIContext } from "../../contexts/LiveAPIContext";
 import "./side-panel.scss";
@@ -10,14 +10,10 @@ interface Message {
 
 interface SidePanelProps {
   onStartSimulation: () => void;
-  showFeedbackButton: boolean;
-  onFeedbackRequest: () => void;
 }
 
 export default function SidePanel({
   onStartSimulation,
-  showFeedbackButton,
-  onFeedbackRequest,
 }: SidePanelProps) {
   const { client, connected, disconnect } = useLiveAPIContext(); // Use the hook inside SidePanel
   const [open, setOpen] = useState(true);
@@ -44,8 +40,7 @@ export default function SidePanel({
     let scenarioText = "";
     switch (selectedScenario) {
       case "medical":
-        scenarioText =
-          "a Medical Emergency (e.g., Cardiac Arrest, Stroke)";
+        scenarioText = "a Medical Emergency (e.g., Cardiac Arrest, Stroke)";
         break;
       case "traffic":
         scenarioText =
@@ -61,20 +56,17 @@ export default function SidePanel({
         scenarioText = "a Domestic Disturbance";
         break;
       case "suspiciousActivity":
-        scenarioText =
-          "Suspicious Activity (e.g., Person, Package)";
+        scenarioText = "Suspicious Activity (e.g., Person, Package)";
         break;
       case "robbery":
         scenarioText =
           "a Robbery in Progress (e.g., Bank, Store, Home Invasion)";
         break;
       case "missingPerson":
-        scenarioText =
-          "a Missing Person (e.g., Child, Elderly, Runaway)";
+        scenarioText = "a Missing Person (e.g., Child, Elderly, Runaway)";
         break;
       case "naturalDisaster":
-        scenarioText =
-          "a Natural Disaster (e.g., Flood, Earthquake, Tornado)";
+        scenarioText = "a Natural Disaster (e.g., Flood, Earthquake, Tornado)";
         break;
       case "mentalHealthCrisis":
         scenarioText =
@@ -93,17 +85,25 @@ export default function SidePanel({
     setSelectedComplexity("3");
   };
 
-  const handleFeedbackRequest = () => {
-    const feedbackMessage =
-      "Ok now lets stop this simuation , Give me detailed and indepth feedback on my performance according to protocols and also give me suggestions on where i can improve , talk for atleast 30 seconds , now go";
-    client.send([
-      {
-        text: feedbackMessage,
-      },
-    ]);
-    disconnect();
-    onFeedbackRequest(); // Hide feedback button after sending message
-  };
+  useEffect(() => {
+    const handleTimerEnd = () => {
+      // Send feedback message automatically when the timer ends
+      const feedbackMessage =
+        "Ok now lets stop this simuation , Give me detailed and indepth feedback on my performance according to protocols and also give me suggestions on where i can improve , talk for atleast 30 seconds , now go";
+      client.send([
+        {
+          text: feedbackMessage,
+        },
+      ]);
+    };
+
+    // Assuming you have a way to detect when the timer ends, for example, using a custom event
+    window.addEventListener("timerEnd", handleTimerEnd);
+
+    return () => {
+      window.removeEventListener("timerEnd", handleTimerEnd);
+    };
+  }, [client]);
 
   return (
     <div
@@ -131,9 +131,7 @@ export default function SidePanel({
             <li>Start Voice Streaming By Clicking on the Play Button</li>
             <li>Select Your Scenario and Complexity Level</li>
             <li>Now Click On Start Scenario</li>
-            <li>
-              Say "911 Whats Your Emergency" to start the simulation
-            </li>
+            <li>Say "911 Whats Your Emergency" to start the simulation</li>
             <li>
               After 3 Minutes the simulation will end and You will be given
               Feedback on your performance
@@ -213,12 +211,6 @@ export default function SidePanel({
           >
             Start Simulation
           </button>
-          {/* Feedback Button */}
-          {showFeedbackButton && (
-            <button className="feedback-button" onClick={handleFeedbackRequest}>
-              Performance Feedback
-            </button>
-          )}
         </div>
       </div>
     </div>

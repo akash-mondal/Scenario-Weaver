@@ -21,12 +21,10 @@ function App() {
   const [videoStream, setVideoStream] = useState<MediaStream | null>(null);
   const [showTimer, setShowTimer] = useState(false);
   const [simulationStarted, setSimulationStarted] = useState(false);
-  const [showFeedbackButton, setShowFeedbackButton] = useState(false);
 
   const handleTimerEnd = () => {
     setSimulationStarted(false);
     setShowTimer(false);
-    setShowFeedbackButton(true);
   };
 
   return (
@@ -37,13 +35,12 @@ function App() {
             onStartSimulation={() => {
               setShowTimer(true);
               setSimulationStarted(true);
-              setShowFeedbackButton(false);
             }}
-            showFeedbackButton={showFeedbackButton}
-            onFeedbackRequest={() => setShowFeedbackButton(false)}
           />
           <main>
-          <h1 className="app-title">SCENARIO WEAVER</h1> {/* Add title here */}
+            <h1 className="app-title">
+              SCENARIO WEAVER
+            </h1> {/* Add title here */}
             <Altair />
             <video
               className={cn("stream", {
@@ -64,9 +61,7 @@ function App() {
             )}
 
             <div className="footer">
-              <p>
-                Made by ⭐Shrestha Singh⭐
-              </p>
+              <p>Made by ⭐Shrestha Singh⭐</p>
               <div className="social-links">
                 <a
                   href="https://www.linkedin.com/in/shrestha-singh-/"

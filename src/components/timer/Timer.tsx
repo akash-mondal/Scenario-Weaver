@@ -21,9 +21,10 @@ const Timer: React.FC<TimerProps> = ({ duration, onTimerEnd }) => {
 
     const intervalId = setInterval(() => {
       setSecondsRemaining((prevSeconds) => {
-        if (prevSeconds <= 0) {
+        if (prevSeconds <= 1) {
           clearInterval(intervalId);
           onTimerEnd();
+          window.dispatchEvent(new Event("timerEnd")); // Dispatch custom event
           return 0;
         }
         return prevSeconds - 1;
