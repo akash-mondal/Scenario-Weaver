@@ -1,5 +1,14 @@
 # Scenario Weaver
 
+
+
+
+
+
+
+
+
+
 Scenario Weaver is an innovative web application designed for training and evaluating emergency dispatchers. It leverages advanced AI models, including Google's Gemini, to create realistic and dynamic simulation scenarios. Dispatchers can practice handling various emergency situations, enhancing their skills in a safe, controlled environment.
 
 ## Features
