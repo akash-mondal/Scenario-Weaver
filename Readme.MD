@@ -1,4 +1,4 @@
-# 🚨 Scenario Weaver: The Ultimate Emergency Dispatcher Trainer 🚨
+#  Scenario Weaver: The Ultimate Emergency Dispatcher Trainer 
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/shresthasingh1501/Scenario-Weaver/main/public/6aeeb198-39f9-4eb4-b3cf-43731219f7cc.jpeg" alt="Screenshot of Scenario Weaver" width="600"/>
